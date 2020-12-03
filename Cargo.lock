@@ -8,5 +8,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "day2"
+version = "0.1.0"
+dependencies = [
+ "prelude",
+]
+
+[[package]]
 name = "prelude"
 version = "0.1.0"

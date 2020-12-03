@@ -1,10 +1,13 @@
 type ExpenseReportEntry = i64;
 
 fn main() {
-    let mut entries = prelude::read_input_lines("input.txt", |x| {
-        x.parse::<ExpenseReportEntry>()
-            .expect("Failed to parse expense report entry")
-    });
+    let mut entries: Vec<ExpenseReportEntry> = prelude::read_input_lines("input.txt")
+        .into_iter()
+        .map(|x| {
+            x.parse::<ExpenseReportEntry>()
+                .expect("Failed to parse expense report entry")
+        })
+        .collect();
     entries.sort();
     println!("Part 1");
     match part1(&entries) {
