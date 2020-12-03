@@ -1,21 +1,10 @@
-use std::fs;
-
 type ExpenseReportEntry = i64;
 
-fn read_input() -> Vec<ExpenseReportEntry> {
-    fs::read_to_string("input.txt")
-        .expect("Failed to read input file")
-        .split("\n")
-        .filter(|x| x.len() > 0)
-        .map(|x| {
-            x.parse::<ExpenseReportEntry>()
-                .expect("Failed to parse expense report entry")
-        })
-        .collect()
-}
-
 fn main() {
-    let mut entries = read_input();
+    let mut entries = prelude::read_input_lines("input.txt", |x| {
+        x.parse::<ExpenseReportEntry>()
+            .expect("Failed to parse expense report entry")
+    });
     entries.sort();
     println!("Part 1");
     match part1(&entries) {
