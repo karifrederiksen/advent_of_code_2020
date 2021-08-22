@@ -15,7 +15,7 @@ impl SeatPosition {
             .map(|(idx, c)| match c {
                 'B' => (2 as u8).pow(6 - idx as u32),
                 'F' => 0,
-                _ => panic!(format!("unexpected row code: {:?}", c)),
+                _ => panic!("unexpected row code: {:?}", c),
             })
             .sum();
         let column: u8 = code[7..]
@@ -24,7 +24,7 @@ impl SeatPosition {
             .map(|(idx, c)| match c {
                 'R' => (2 as u8).pow(2 - idx as u32),
                 'L' => 0,
-                _ => panic!(format!("unexpected column code: {:?}", c)),
+                _ => panic!("unexpected column code: {:?}", c),
             })
             .sum();
         Some(Self { row, column })

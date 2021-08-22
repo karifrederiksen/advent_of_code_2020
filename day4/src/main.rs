@@ -1,4 +1,3 @@
-#![feature(str_split_once)]
 use prelude::*;
 
 type Passport = Vec<(String, String)>;
@@ -8,6 +7,7 @@ fn parse(input: &str) -> Vec<Passport> {
         .split("\n\n")
         .map(|pass: &str| {
             let xs: Passport = pass
+                .replace("\r", "")
                 .split(" ")
                 .flat_map(|x| x.split("\n"))
                 .filter(|&x| x != "")

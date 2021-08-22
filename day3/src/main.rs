@@ -27,7 +27,7 @@ impl Terrain {
                 tiles[idx] = match tile_ch {
                     '.' => TileType::Clear,
                     '#' => TileType::Tree,
-                    _ => panic!(format!("Unexpected tile type: {:?}", tile_ch)),
+                    _ => panic!("Unexpected tile type: {:?}", tile_ch),
                 };
             }
         }

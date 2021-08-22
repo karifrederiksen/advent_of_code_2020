@@ -1,7 +1,7 @@
 fn parse(s: &str) -> Vec<u64> {
     s.split("\n")
         .into_iter()
-        .map(|s| s.parse::<u64>().unwrap())
+        .map(|s| s.replace("\r", "").parse::<u64>().unwrap())
         .collect::<Vec<u64>>()
 }
 

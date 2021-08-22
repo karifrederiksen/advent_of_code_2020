@@ -12,7 +12,7 @@ type Change = (Tile, usize, usize);
 fn parse(s: &str) -> Grid {
     s.split("\n")
         .map(|s| {
-            s.chars()
+            s.replace("\r", "").chars()
                 .map(|c| match c {
                     '.' => Tile::Floor,
                     'L' => Tile::SeatEmpty,
@@ -192,24 +192,19 @@ fn main() {
     println!("Answer: {}", part2_answer);
 }
 
-fn unparse(grid: &Grid) -> String {
-    let lines: Vec<String> = grid.iter().map(unparse_line).collect();
-    lines.join("\n")
-}
-
-fn unparse_line(line: &Vec<Tile>) -> String {
-    line.iter()
-        .map(|&t| match t {
-            Tile::Floor => '.',
-            Tile::SeatEmpty => 'L',
-            Tile::SeatOccupied => '#',
-        })
-        .collect()
-}
-
 #[cfg(test)]
 mod tests {
     use super::{Grid, Tile};
+
+    fn unparse_line(line: &Vec<Tile>) -> String {
+        line.iter()
+            .map(|&t| match t {
+                Tile::Floor => '.',
+                Tile::SeatEmpty => 'L',
+                Tile::SeatOccupied => '#',
+            })
+            .collect()
+    }
 
     fn inputs() -> Grid {
         super::parse(
@@ -290,7 +285,7 @@ L.#.L..#..
                 grid.iter().zip(step_grid.split("\n")).enumerate()
             {
                 assert_eq!(
-                    super::unparse_line(line_orig),
+                    unparse_line(line_orig),
                     line_test,
                     "after step {} line {}",
                     step_idx + 1,
@@ -376,7 +371,7 @@ LLL###LLL#
                 grid.iter().zip(step_grid.split("\n")).enumerate()
             {
                 assert_eq!(
-                    super::unparse_line(line_orig),
+                    unparse_line(line_orig),
                     line_test,
                     "after step {} line {}",
                     step_idx + 1,

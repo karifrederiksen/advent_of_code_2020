@@ -6,7 +6,7 @@ fn parse(s: &str) -> Vec<Joltage> {
     let mut joltages: Vec<Joltage> = s
         .split("\n")
         .into_iter()
-        .map(|s| s.parse::<Joltage>().unwrap())
+        .map(|s| s.replace("\r", "").parse::<Joltage>().unwrap())
         .collect();
     joltages.sort_unstable();
     joltages

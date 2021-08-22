@@ -12,7 +12,7 @@ pub fn read_input<P: AsRef<Path>>(path: P) -> String {
                 "Failed to load input file \"{}\"\n Error: {}",
                 absolute_path, err
             );
-            panic!(message)
+            panic!("{}", message)
         }
     };
     text
@@ -22,7 +22,7 @@ pub fn read_input_lines<P: AsRef<Path>>(path: P) -> Vec<String> {
     read_input(path)
         .split("\n")
         .filter(|x| x.len() > 0)
-        .map(|x| x.to_string())
+        .map(|x| x.replace("\r", ""))
         .collect()
 }
 

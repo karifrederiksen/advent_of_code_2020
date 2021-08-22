@@ -9,6 +9,7 @@ fn parse_input(text: &str) -> Vec<GroupAnswers> {
         .split("\n\n")
         .map(|group| {
             group
+                .replace("\r", "")
                 .split("\n")
                 .map(|line| line.chars().collect::<AnswerSet>())
                 .collect::<GroupAnswers>()

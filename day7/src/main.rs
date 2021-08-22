@@ -1,4 +1,3 @@
-#![feature(str_split_once)]
 use nom::{
     branch,
     bytes::complete,

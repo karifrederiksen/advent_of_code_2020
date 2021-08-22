@@ -9,4 +9,4 @@ edition = "2018"
 [dependencies]
 prelude = { path = "../prelude" }
 smallvec = "1.5"
-nom = "6.0"
+nom = "7.0"
